@@ -1,13 +1,14 @@
 const socketIo = require('socket.io');
 const userModel = require('./models/user.model');
 const captainModel = require('./models/captain.model');
+const FRONTEND_URL = process.env.FRONTEND_URL || "http://localhost:5173"
 
 let io;
 
 function initializeSocket(server) {
     io = socketIo(server, {
         cors: {
-            origin: '*',
+            origin: FRONTEND_URL,
             methods: [ 'GET', 'POST' ]
         }
     });
